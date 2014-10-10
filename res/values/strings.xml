@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Shuffle</string>
+    
+    <!--  Action bar -->
+    <string name="action_settings">Settings</string>
+    <string name="action_shuffle">All</string>
+    <string name="action_char_shuffle">Char.</string>
+    <string name="action_district_shuffle">Dist.</string>
+    
+    <!--  main layout -->
+    <string name="main_character_cards">Character cards:</string>
+    <string name="main_district_cards">District cards:</string>
+    <string name="main_character_cards_disp">Characters</string>
+    <string name="main_district_cards_disp">Districts</string>
+
+</resources>
