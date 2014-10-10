@@ -140,10 +140,10 @@ public class CitidelsShuffle extends Activity {
 		for (int i = 0; i<maxChars; i ++)
 		{
 			rand = randGen.nextInt(2);
-			strCharDisp = strCharDisp + CharacterDB[2*i+rand].name;
+			strCharDisp = strCharDisp + "(" + i + ") " + CharacterDB[2*i+rand].name;
 			// Add comma if not the last one
 			if (i<maxChars-1)
-				strCharDisp = strCharDisp + ", ";
+				strCharDisp = strCharDisp + "\n";
 		}
 		updateDisplayChars();
 	}
@@ -161,7 +161,7 @@ public class CitidelsShuffle extends Activity {
 			rand = randGen.nextInt(Card.NUM_BONUS_DISTRICT);
 			strDistDisp = strDistDisp + DistrictDB[rand].name;
 			if (i<maxDist-1)
-				strDistDisp = strDistDisp + ", ";
+				strDistDisp = strDistDisp + "\n";
 		}
 		updateDisplayDistricts();
 	}
