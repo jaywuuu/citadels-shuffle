@@ -38,8 +38,8 @@ public class CitidelsShuffle extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// Setup action bar as tabs
-		// final ActionBar actionBar = getActionBar();
-		//actionBar.setDisplayShowTitleEnabled(false);
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowTitleEnabled(false);
 
 		setContentView(R.layout.activity_citidels_shuffle);
 		

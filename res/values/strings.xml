@@ -5,9 +5,9 @@
     
     <!--  Action bar -->
     <string name="action_settings">Settings</string>
-    <string name="action_shuffle">All</string>
-    <string name="action_char_shuffle">Char.</string>
-    <string name="action_district_shuffle">Dist.</string>
+    <string name="action_shuffle">Shuffle All</string>
+    <string name="action_char_shuffle">Chars.</string>
+    <string name="action_district_shuffle">Districts</string>
     
     <!--  main layout -->
     <string name="main_character_cards">Character cards:</string>
