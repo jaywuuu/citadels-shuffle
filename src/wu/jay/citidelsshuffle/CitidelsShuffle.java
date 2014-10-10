@@ -140,7 +140,7 @@ public class CitidelsShuffle extends Activity {
 		for (int i = 0; i<maxChars; i ++)
 		{
 			rand = randGen.nextInt(2);
-			strCharDisp = strCharDisp + "(" + i + ") " + CharacterDB[2*i+rand].name;
+			strCharDisp = strCharDisp + "(" + (i+1) + ") " + CharacterDB[2*i+rand].name;
 			// Add comma if not the last one
 			if (i<maxChars-1)
 				strCharDisp = strCharDisp + "\n";

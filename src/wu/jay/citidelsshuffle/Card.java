@@ -24,7 +24,7 @@ public class Card {
 	public static final String CHAR_ABBOT = "Abbot";
 	public static final String CHAR_ALCHEMIST = "Alchemist";
 	public static final String CHAR_NAV = "Navigator";
-	public static final String CHAR_DIPLOMAT = "Dimplomat";
+	public static final String CHAR_DIPLOMAT = "Diplomat";
 	public static final String CHAR_QUEEN = "Queen";
 	public static final String CHAR_ARTIST = "Artist";
 
