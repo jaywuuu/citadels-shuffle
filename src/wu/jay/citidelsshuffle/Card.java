@@ -60,12 +60,10 @@ public class Card {
 	public static void initCharacterDB(Card[] charDB, int size) {
 
 		// Check bounds
-		if (size != Card.NUM_CHAR_CARDS)
-			return;
+		if (size != Card.NUM_CHAR_CARDS) return;
 
 		// ranks and init
-		for (int i = 0; i < size; i++)
-			charDB[i] = new Card("", i / 2);
+		for (int i = 0; i < size; i++) charDB[i] = new Card("", i / 2);
 
 		// Names
 		charDB[0].name = CHAR_ASSASSIN;
@@ -91,12 +89,10 @@ public class Card {
 
 	public static void initDistrictsDB(Card[] distDB, int size) {
 		// Check bounds
-		if (size != Card.NUM_BONUS_DISTRICT)
-			return;
+		if (size != Card.NUM_BONUS_DISTRICT) return;
 
 		// init
-		for (int i = 0; i < size; i++)
-			distDB[i] = new Card();
+		for (int i = 0; i < size; i++) distDB[i] = new Card();
 
 		// Fill out constants
 		distDB[0].name = DIST_WISHWELL;

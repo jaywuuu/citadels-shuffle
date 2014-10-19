@@ -12,22 +12,22 @@ import android.widget.TextView;
 
 public class CitidelsShuffle extends Activity {
 	// Some constants for bundle and saving state
-	private final String KEY_CHOSEN_CHARS = "strChosenChars";
-	private final String KEY_CHOSEN_DIST = "strChosenDist";
+	public static final String KEY_CHOSEN_CHARS = "chosenChars";
+	public static final String KEY_CHOSEN_DIST = "chosenDist";
 	
 	// Define items on the layout
 	private TextView mTvChars;
 	private TextView mTvDistricts;
 	
 	// String to be output to textviews
-	private String strCharDisp;
-	private String strDistDisp;
+	private String mCharDisp;
+	private String mDistDisp;
 	
 	// Cards 
-	private Card CharacterDB[] = new Card[Card.NUM_CHAR_CARDS];
-	private Card DistrictDB[] = new Card[Card.NUM_BONUS_DISTRICT];
-	private int numChosenChars = Card.MAX_CHOSEN_CHARS;
-	private int numChosenDist = Card.MAX_CHOSEN_DIST;
+	private Card mCharacterDB[] = new Card[Card.NUM_CHAR_CARDS];
+	private Card mDistrictDB[] = new Card[Card.NUM_BONUS_DISTRICT];
+	private int mNumChosenChars = Card.MAX_CHOSEN_CHARS;
+	private int mNumChosenDist = Card.MAX_CHOSEN_DIST;
 	
 	// Number of players
 	// private int numPlayers;
@@ -48,15 +48,15 @@ public class CitidelsShuffle extends Activity {
 		
 		if ( savedInstanceState != null )
 		{
-			strCharDisp = savedInstanceState.getString(KEY_CHOSEN_CHARS);
-			strDistDisp = savedInstanceState.getString(KEY_CHOSEN_DIST);
+			mCharDisp = savedInstanceState.getString(KEY_CHOSEN_CHARS);
+			mDistDisp = savedInstanceState.getString(KEY_CHOSEN_DIST);
 		}
 		else {
 			// Choose random characters
-			shuffleCharacters(numChosenChars);
+			shuffleCharacters(mNumChosenChars);
 
 			// Choose random bonus districts
-			shuffleDistricts(numChosenDist);
+			shuffleDistricts(mNumChosenDist);
 		}
 		
 		// Update display
@@ -72,20 +72,20 @@ public class CitidelsShuffle extends Activity {
 		mTvDistricts = (TextView) findViewById(R.id.main_Tv_district_cards_display);	
 		
 		// String reset
-		strCharDisp = "";
-		strDistDisp = "";
+		mCharDisp = "";
+		mDistDisp = "";
 		
 		// Setup cards and such only if we haven't initially done so.
-		Card.initCharacterDB(CharacterDB, Card.NUM_CHAR_CARDS);
-		Card.initDistrictsDB(DistrictDB, Card.NUM_BONUS_DISTRICT);
+		Card.initCharacterDB(mCharacterDB, Card.NUM_CHAR_CARDS);
+		Card.initDistrictsDB(mDistrictDB, Card.NUM_BONUS_DISTRICT);
 	}
 	
 	private void updateDisplayChars() {
-		mTvChars.setText(strCharDisp);
+		mTvChars.setText(mCharDisp);
 	}
 	
 	private void updateDisplayDistricts() {
-		mTvDistricts.setText(strDistDisp);
+		mTvDistricts.setText(mDistDisp);
 	}
 
 	// Add action bar
@@ -108,10 +108,10 @@ public class CitidelsShuffle extends Activity {
 			shuffleAll();
 			return true;
 		case R.id.action_shuffle_char:
-			shuffleCharacters(numChosenChars);
+			shuffleCharacters(mNumChosenChars);
 			return true;
 		case R.id.action_shuffle_district:
-			shuffleDistricts(numChosenDist);
+			shuffleDistricts(mNumChosenDist);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -125,8 +125,8 @@ public class CitidelsShuffle extends Activity {
 	
 	// Shuffle everything
 	private void shuffleAll() {
-		shuffleCharacters(numChosenChars);
-		shuffleDistricts(numChosenDist);
+		shuffleCharacters(mNumChosenChars);
+		shuffleDistricts(mNumChosenDist);
 	}
 	
 	// Shuffle only characters and update display
@@ -135,15 +135,13 @@ public class CitidelsShuffle extends Activity {
 		int rand = 0;
 		
 		// Reset String
-		strCharDisp = "";
+		mCharDisp = "";
 		
-		for (int i = 0; i<maxChars; i ++)
-		{
+		for (int i = 0; i<maxChars; i ++) {
 			rand = randGen.nextInt(2);
-			strCharDisp = strCharDisp + "(" + (i+1) + ") " + CharacterDB[2*i+rand].name;
+			mCharDisp = mCharDisp + "(" + (i+1) + ") " + mCharacterDB[2*i+rand].name;
 			// Add comma if not the last one
-			if (i<maxChars-1)
-				strCharDisp = strCharDisp + "\n";
+			if (i<maxChars-1) mCharDisp = mCharDisp + "\n";
 		}
 		updateDisplayChars();
 	}
@@ -154,14 +152,12 @@ public class CitidelsShuffle extends Activity {
 		int rand = 0;
 		
 		// Reset String
-		strDistDisp = "";
+		mDistDisp = "";
 		
-		for (int i = 0; i<maxDist; i ++)
-		{
+		for (int i = 0; i<maxDist; i ++) {
 			rand = randGen.nextInt(Card.NUM_BONUS_DISTRICT);
-			strDistDisp = strDistDisp + DistrictDB[rand].name;
-			if (i<maxDist-1)
-				strDistDisp = strDistDisp + "\n";
+			mDistDisp = mDistDisp + mDistrictDB[rand].name;
+			if (i<maxDist-1) mDistDisp = mDistDisp + "\n";
 		}
 		updateDisplayDistricts();
 	}
@@ -170,13 +166,9 @@ public class CitidelsShuffle extends Activity {
 	// Persist data, etc
 	@Override 
 	public void onSaveInstanceState(Bundle savedInstanceState) {
-		savedInstanceState.putString(KEY_CHOSEN_CHARS, strCharDisp);
-		savedInstanceState.putString(KEY_CHOSEN_DIST, strDistDisp);
+		savedInstanceState.putString(KEY_CHOSEN_CHARS, mCharDisp);
+		savedInstanceState.putString(KEY_CHOSEN_DIST, mDistDisp);
 	}
 	
-	@Override
-	public void onPause() {
-		super.onPause();
-	}
 }
 
