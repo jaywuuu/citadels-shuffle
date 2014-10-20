@@ -9,10 +9,14 @@
     <string name="action_char_shuffle">Chars.</string>
     <string name="action_district_shuffle">Districts</string>
     
-    <!--  main layout -->
-    <string name="main_character_cards">Character cards:</string>
-    <string name="main_district_cards">District cards:</string>
-    <string name="main_character_cards_disp">Characters</string>
-    <string name="main_district_cards_disp">Districts</string>
+    <!--  shuffle fragment strings -->
+    <string name="shuf_character_cards">Character cards</string>
+    <string name="shuf_district_cards">District cards</string>
+    <string name="shuf_character_cards_disp">Characters</string>
+    <string name="shuf_district_cards_disp">Districts</string>
+    
+    <!-- Rules fragment strings.  Rules defined here. -->
+    <string name="rules_Tv_rulesTitle">Quick rules</string>
+    <string name="rules_Tv_numPlayers">For 4 to 7 players:</string>
 
 </resources>

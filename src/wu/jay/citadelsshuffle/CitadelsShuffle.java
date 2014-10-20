@@ -1,6 +1,7 @@
-package wu.jay.citidelsshuffle;
+package wu.jay.citadelsshuffle;
 
 import java.util.Random;
+import wu.jay.citadelsshuffle.R;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -8,20 +9,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class CitidelsShuffle extends Activity {
+public class CitadelsShuffle extends Activity {
 	// Some constants for bundle and saving state
 	public static final String KEY_CHOSEN_CHARS = "chosenChars";
 	public static final String KEY_CHOSEN_DIST = "chosenDist";
 	
 	// Define items on the layout
-	private TextView mTvChars;
-	private TextView mTvDistricts;
+	// Fragments
+	private ShuffleFrag mShuffleFrag;
+	private RulesFrag mRulesFrag;
 	
 	// String to be output to textviews
 	private String mCharDisp;
 	private String mDistDisp;
+	private String mRules;
 	
 	// Cards 
 	private Card mCharacterDB[] = new Card[Card.NUM_CHAR_CARDS];
@@ -41,7 +43,7 @@ public class CitidelsShuffle extends Activity {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
 
-		setContentView(R.layout.activity_citidels_shuffle);
+		setContentView(R.layout.main);
 		
 		// init
 		init();
@@ -53,39 +55,46 @@ public class CitidelsShuffle extends Activity {
 		}
 		else {
 			// Choose random characters
-			shuffleCharacters(mNumChosenChars);
+			//shuffleCharacters(mNumChosenChars);
 
 			// Choose random bonus districts
-			shuffleDistricts(mNumChosenDist);
+			//shuffleDistricts(mNumChosenDist);
 		}
 		
 		// Update display
-		updateDisplayChars();
-		updateDisplayDistricts();
-		
+		//updateDisplayChars();
+		//updateDisplayDistricts();
+		//updateRules();
 	}
 	
 	// Initialize everything...
 	private void init() {
-		// Layout items
-		mTvChars = (TextView) findViewById(R.id.main_Tv_character_cards_display);
-		mTvDistricts = (TextView) findViewById(R.id.main_Tv_district_cards_display);	
+		// Get fragments
+		mShuffleFrag = (ShuffleFrag) getFragmentManager().findFragmentById(R.id.shuffle_frag);
+		mRulesFrag = (RulesFrag) getFragmentManager().findFragmentById(R.id.rules_frag);
 		
 		// String reset
 		mCharDisp = "";
 		mDistDisp = "";
+		mRules = "";
 		
 		// Setup cards and such only if we haven't initially done so.
 		Card.initCharacterDB(mCharacterDB, Card.NUM_CHAR_CARDS);
 		Card.initDistrictsDB(mDistrictDB, Card.NUM_BONUS_DISTRICT);
 	}
 	
+	// Fragment update textview wrappers
 	private void updateDisplayChars() {
-		mTvChars.setText(mCharDisp);
+		mShuffleFrag.updateDisplayChars(mCharDisp);
 	}
 	
+	// Fragment update textview wrappers
 	private void updateDisplayDistricts() {
-		mTvDistricts.setText(mDistDisp);
+		mShuffleFrag.updateDisplayDistricts(mDistDisp);
+	}
+	
+	private void updateRules() {
+		mRulesFrag.updateRules(mRules);
 	}
 
 	// Add action bar

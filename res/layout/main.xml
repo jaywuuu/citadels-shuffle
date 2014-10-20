@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:animateLayoutChanges="true"
+    android:baselineAligned="false" 
+    tools:context="${relativePackage}.${activityClass}" >
+
+   <fragment
+       android:id="@+id/shuffle_frag"
+       android:layout_width="0px"
+       android:layout_height="match_parent"
+       android:layout_weight="1"
+       class="wu.jay.citadelsshuffle.ShuffleFrag" />
+   
+   <fragment
+       android:id="@+id/rules_frag"
+       android:layout_width="0px"
+       android:layout_height="match_parent"
+       android:layout_weight="3"
+       class="wu.jay.citadelsshuffle.RulesFrag" />
+
+</LinearLayout>

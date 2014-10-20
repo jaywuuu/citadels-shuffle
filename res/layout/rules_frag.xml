@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/rules_Tv_rulesTitle"
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:text="@string/rules_Tv_rulesTitle" 
+	    android:textStyle="bold"
+	    android:textSize="24sp" />
+    
+	<TextView
+	    android:id="@+id/rules_Tv_rules"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:padding="5dip"
+	    android:textSize="24sp" />
+    
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/shuf_Tv_character_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shuf_character_cards"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/shuf_Tv_character_cards_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shuf_character_cards_disp" />
+
+    <TextView
+        android:id="@+id/shuf_Tv_district_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shuf_district_cards"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/shuf_Tv_district_cards_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shuf_district_cards_disp" />
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package wu.jay.citidelsshuffle;
+package wu.jay.citadelsshuffle;
 
 public class Card {
 
