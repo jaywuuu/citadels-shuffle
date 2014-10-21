@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+     <ListPreference
+        android:key="pref_numPlayers"
+        android:title="@string/pref_numPlayers"
+        android:dialogTitle="@string/pref_numPlayers"
+        android:entries="@array/pref_pref_numPlayers_entries"
+        android:entryValues="@array/pref_pref_numPlayers_values"
+        android:defaultValue="@string/pref_pref_numPlayers_default" />
+</PreferenceScreen>

@@ -6,6 +6,7 @@ import wu.jay.citadelsshuffle.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,18 +54,21 @@ public class CitadelsShuffle extends Activity {
 			mCharDisp = savedInstanceState.getString(KEY_CHOSEN_CHARS);
 			mDistDisp = savedInstanceState.getString(KEY_CHOSEN_DIST);
 		}
-		else {
-			// Choose random characters
-			//shuffleCharacters(mNumChosenChars);
-
-			// Choose random bonus districts
-			//shuffleDistricts(mNumChosenDist);
-		}
+	}
+	
+	// Update textview texts and shuffle some characters and districts if they are not already
+	// determined by the savedInstanceState.
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		if (mCharDisp == null) shuffleCharacters(mNumChosenChars);
+		if (mDistDisp == null) shuffleDistricts(mNumChosenDist);
 		
 		// Update display
-		//updateDisplayChars();
-		//updateDisplayDistricts();
-		//updateRules();
+		updateDisplayChars();
+		updateDisplayDistricts();
+		updateRules();
 	}
 	
 	// Initialize everything...
@@ -74,9 +78,9 @@ public class CitadelsShuffle extends Activity {
 		mRulesFrag = (RulesFrag) getFragmentManager().findFragmentById(R.id.rules_frag);
 		
 		// String reset
-		mCharDisp = "";
-		mDistDisp = "";
-		mRules = "";
+		mCharDisp = null;
+		mDistDisp = null;
+		mRules = null;
 		
 		// Setup cards and such only if we haven't initially done so.
 		Card.initCharacterDB(mCharacterDB, Card.NUM_CHAR_CARDS);
@@ -115,12 +119,15 @@ public class CitadelsShuffle extends Activity {
 			return true;
 		case R.id.action_shuffle:
 			shuffleAll();
+			showMainFragments();
 			return true;
 		case R.id.action_shuffle_char:
 			shuffleCharacters(mNumChosenChars);
+			showMainFragments();
 			return true;
 		case R.id.action_shuffle_district:
 			shuffleDistricts(mNumChosenDist);
+			showMainFragments();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -129,7 +136,15 @@ public class CitadelsShuffle extends Activity {
 	
 	// Settings
 	private void openSettings() {
-		return;
+		// Hide the other fragments.
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.hide(mShuffleFrag);
+		transaction.hide(mRulesFrag);
+		
+		// Get fragment manager and transaction.  Replace with settings fragment.
+		transaction.replace(android.R.id.content, new Settings());
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 	
 	// Shuffle everything
@@ -148,7 +163,7 @@ public class CitadelsShuffle extends Activity {
 		
 		for (int i = 0; i<maxChars; i ++) {
 			rand = randGen.nextInt(2);
-			mCharDisp = mCharDisp + "(" + (i+1) + ") " + mCharacterDB[2*i+rand].name;
+			mCharDisp = mCharDisp + (i+1) + ". " + mCharacterDB[2*i+rand].name;
 			// Add comma if not the last one
 			if (i<maxChars-1) mCharDisp = mCharDisp + "\n";
 		}
@@ -165,7 +180,7 @@ public class CitadelsShuffle extends Activity {
 		
 		for (int i = 0; i<maxDist; i ++) {
 			rand = randGen.nextInt(Card.NUM_BONUS_DISTRICT);
-			mDistDisp = mDistDisp + mDistrictDB[rand].name;
+			mDistDisp = mDistDisp + (i+1) + ". " + mDistrictDB[rand].name;
 			if (i<maxDist-1) mDistDisp = mDistDisp + "\n";
 		}
 		updateDisplayDistricts();
@@ -179,5 +194,17 @@ public class CitadelsShuffle extends Activity {
 		savedInstanceState.putString(KEY_CHOSEN_DIST, mDistDisp);
 	}
 	
+	// Reveal Shuffle and Rules fragment, while removing settings fragment.
+	private void showMainFragments() {
+		// If the fragment is hidden, reveal it. Assume also that the rules fragment is
+		// also hidden and the settings fragment is revealed, so detach that.
+		if (mShuffleFrag.isHidden() || mRulesFrag.isHidden()) {
+			FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			transaction.show(mShuffleFrag);
+			transaction.show(mRulesFrag);
+			transaction.remove(getFragmentManager().findFragmentById(android.R.id.content));
+			transaction.commit();
+		}
+	}
 }
 
